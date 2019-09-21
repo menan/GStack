@@ -15,6 +15,7 @@ public struct GStack<Content>: View where Content: View {
     var columns = 3
     var paddingBottom: CGFloat = 0
     var paddingRight: CGFloat = 0
+    var spreadout = false
     
     var rows: Int {
         let rowsFloat = Float(elementsCount) / Float(columns)
@@ -24,12 +25,13 @@ public struct GStack<Content>: View where Content: View {
     let content: (Int) -> Content
     
     
-    public init(totalItems: Int = 0, columns: Int = 3, paddingBottom: CGFloat = 0, paddingRight: CGFloat = 0, @ViewBuilder content: @escaping (Int) -> Content) {
+    public init(totalItems: Int = 0, columns: Int = 3, paddingBottom: CGFloat = 0, paddingRight: CGFloat = 0, spreadout: Bool, @ViewBuilder content: @escaping (Int) -> Content) {
         self.elementsCount = totalItems
         self.content = content
         self.columns = columns
         self.paddingBottom = paddingBottom
         self.paddingRight = paddingRight
+        self.spreadout = spreadout
     }
     
     public var body: some View {
@@ -42,6 +44,9 @@ public struct GStack<Content>: View where Content: View {
                             if self.columns * row + col < self.elementsCount {
                                 self.content(self.columns * row + col)
                                     .padding(.trailing, self.paddingRight)
+                                if self.spreadout {
+                                    Spacer()
+                                }
                             }
                             else {
                                 
