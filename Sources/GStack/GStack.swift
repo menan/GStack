@@ -10,7 +10,7 @@ import SwiftUI
 import Foundation
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-struct GStack<Content>: View where Content: View {
+public struct GStack<Content>: View where Content: View {
     var elementsCount = 0
     var columns = 3
     var paddingBottom: CGFloat = 0
@@ -24,7 +24,7 @@ struct GStack<Content>: View where Content: View {
     let content: (Int) -> Content
     
     
-    init(totalItems: Int = 0, columns: Int = 3, paddingBottom: CGFloat = 0, paddingRight: CGFloat = 0, @ViewBuilder content: @escaping (Int) -> Content) {
+    public init(totalItems: Int = 0, columns: Int = 3, paddingBottom: CGFloat = 0, paddingRight: CGFloat = 0, @ViewBuilder content: @escaping (Int) -> Content) {
         self.elementsCount = totalItems
         self.content = content
         self.columns = columns
@@ -32,7 +32,7 @@ struct GStack<Content>: View where Content: View {
         self.paddingRight = paddingRight
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading) {
             
             ForEach(0..<rows, id: \.self) { row in
@@ -56,12 +56,3 @@ struct GStack<Content>: View where Content: View {
         }
     }
 }
-
-struct GStack_Previews: PreviewProvider {
-    static var previews: some View {
-        GStack {
-            Text("hello \($0)")
-        }
-    }
-}
-
