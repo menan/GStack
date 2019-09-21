@@ -22,8 +22,8 @@ let package = Package(
         .target(
             name: "GStack",
             dependencies: []),
-        .testTarget(
-            name: "GStackTests",
-            dependencies: ["GStack"]),
+//         .testTarget(
+//             name: "GStackTests",
+//             dependencies: ["GStack"]),
     ]
 )
